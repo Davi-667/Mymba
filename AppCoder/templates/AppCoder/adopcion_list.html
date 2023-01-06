@@ -1,0 +1,33 @@
+{% extends "AppCoder/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+    <h3> Animales para Adoptar:</h3>
+        <ul>
+            {% for adopcion in object_list %}
+        
+            <ul style="list-style-type: circle;">
+
+             <li>{{adopcion.nombre_de_Mascota}}</li>
+            
+            </ul>
+            
+            <div class="col-md-4">
+              {% if adopcion.imagen_adopcion %}
+                <img Src={{adopcion.imagen_adopcion.url}} width="180" height="180">
+              {% endif %}
+            </div>
+             <p>
+                <a href="{% url 'Detail' adopcion.id %}">Ver</a>
+                <a href="{% url 'Edit' adopcion.id %}">Editar</a>
+                <a href="{% url 'Delete' adopcion.id %}">Borrar</a>
+             </p> 
+            {%endfor%}
+    
+        </ul>
+
+<a class="btn btn-primary" href="{% url 'New' %}">Nuevo</a>
+<a href="{% url 'Inicio'%}">Inicio</a>
+{% endblock %}
